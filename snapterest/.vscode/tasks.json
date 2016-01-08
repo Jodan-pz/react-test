@@ -1,0 +1,15 @@
+{
+    "version": "0.1.0",
+    "command": "gulp",
+    "isShellCommand": false,
+    "showOutput": "never",    
+    "args": [
+        "--no-color"
+    ],
+    "tasks": [
+        {
+            "taskName": "default",
+            "isBuildCommand": true
+        }
+    ]
+}
