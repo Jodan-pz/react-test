@@ -4,10 +4,10 @@
     "storeTweets": false,
     "pushKeywords": false,
     "storeKeywords": false,
-    "trackKeywords": "milan",
+    "trackKeywords": "my",
     "excludeKeywords": "",
     
-    "_filters": [
+    "filters": [
 	"snapkite-filter-is-possibly-sensitive",
 	"snapkite-filter-has-mobile-photo",
 	"snapkite-filter-is-retweet",
