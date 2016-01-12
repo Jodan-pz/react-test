@@ -4,9 +4,12 @@
         "storeTweets": true,
         "pushKeywords": false,
         "storeKeywords": false,
-        "trackKeywords": "tech,apple,house,my",
+        "trackKeywords": "tech, apple, ac milan",
         "excludeKeywords": "",
-        "filters": []
+        "filters": [
+            
+            
+        ]
     },
     "twitter": {
         "api": {
