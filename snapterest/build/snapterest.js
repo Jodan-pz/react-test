@@ -58826,7 +58826,11 @@ exports.getRoot = function getRoot (file) {
   }
 }
 
+<<<<<<< HEAD
 }).call(this,require('_process'),"/node_modules\\snapkite-stream-client\\node_modules\\socket.io-client\\node_modules\\engine.io-client\\node_modules\\ws\\node_modules\\bufferutil\\node_modules\\bindings\\bindings.js")
+=======
+}).call(this,require('_process'),"/node_modules/snapkite-stream-client/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/node_modules/bufferutil/node_modules/bindings/bindings.js")
+>>>>>>> b53dd276d2365538dd2f046351723d1c49fb1faf
 },{"_process":219,"fs":1,"path":218}],462:[function(require,module,exports){
 /*!
  * Copyright(c) 2011 Einar Otto Stangvik <einaros@gmail.com>
@@ -59239,7 +59243,11 @@ exports.getRoot = function getRoot (file) {
   }
 }
 
+<<<<<<< HEAD
 }).call(this,require('_process'),"/node_modules\\snapkite-stream-client\\node_modules\\socket.io-client\\node_modules\\engine.io-client\\node_modules\\ws\\node_modules\\utf-8-validate\\node_modules\\bindings\\bindings.js")
+=======
+}).call(this,require('_process'),"/node_modules/snapkite-stream-client/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/node_modules/utf-8-validate/node_modules/bindings/bindings.js")
+>>>>>>> b53dd276d2365538dd2f046351723d1c49fb1faf
 },{"_process":219,"fs":1,"path":218}],467:[function(require,module,exports){
 'use strict';
 

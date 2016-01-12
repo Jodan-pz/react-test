@@ -1,35 +1,29 @@
 {
-  "application": {
-    "pushTweets": true,
-    "storeTweets": false,
-    "pushKeywords": false,
-    "storeKeywords": false,
-    "trackKeywords": "my",
-    "excludeKeywords": "",
-    
-    "filters": [
-	"snapkite-filter-is-possibly-sensitive",
-	"snapkite-filter-has-mobile-photo",
-	"snapkite-filter-is-retweet",
-	"snapkite-filter-has-text"
-    ]
-  },
-  "twitter": {
-    "api": {
-      "consumerKey": "6xKmgomasK41HreM9bCODygqT",
-      "consumerSecret": "Nnvxares3BqQzfbo4h80fIZ9tcvYoGxnENrIBnjo23BsU7Bben",
-      "accessTokenKey": "3Y5aIaEAPAKeHFXnNcBfjlDVSgO21yoPai1nblW5",
-      "accessTokenSecret": "dsq3MQXp1aWn6sSGFrioU7HHwjLplRgS60SNxvC7AuNLB"
+    "application": {
+        "pushTweets": true,
+        "storeTweets": true,
+        "pushKeywords": false,
+        "storeKeywords": false,
+        "trackKeywords": "tech,apple,house,my",
+        "excludeKeywords": "",
+        "filters": []
+    },
+    "twitter": {
+        "api": {
+            "consumerKey": "6xKmgomasK41HreM9bCODygqT",
+            "consumerSecret": "Nnvxares3BqQzfbo4h80fIZ9tcvYoGxnENrIBnjo23BsU7Bben",
+            "accessTokenKey": "108364485-3Y5aIaEAPAKeHFXnNcBfjlDVSgO21yoPai1nblW5",
+            "accessTokenSecret": "dsq3MQXp1aWn6sSGFrioU7HHwjLplRgS60SNxvC7AuNLB"
+        }
+    },
+    "database": {
+        "hostname": "127.0.0.1",
+        "port": "27017",
+        "username": "",
+        "password": "",
+        "name": "snapkite"
+    },
+    "socket": {
+        "port": 3000
     }
-  },
-  "database": {
-    "hostname": "127.0.0.1",
-    "port": "27017",
-    "username": "",
-    "password": "",
-    "name": "snapkite"
-  },
-  "socket": {
-    "port": 3000
-  }
 }
