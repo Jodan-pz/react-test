@@ -58826,11 +58826,7 @@ exports.getRoot = function getRoot (file) {
   }
 }
 
-<<<<<<< HEAD
 }).call(this,require('_process'),"/node_modules\\snapkite-stream-client\\node_modules\\socket.io-client\\node_modules\\engine.io-client\\node_modules\\ws\\node_modules\\bufferutil\\node_modules\\bindings\\bindings.js")
-=======
-}).call(this,require('_process'),"/node_modules/snapkite-stream-client/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/node_modules/bufferutil/node_modules/bindings/bindings.js")
->>>>>>> b53dd276d2365538dd2f046351723d1c49fb1faf
 },{"_process":219,"fs":1,"path":218}],462:[function(require,module,exports){
 /*!
  * Copyright(c) 2011 Einar Otto Stangvik <einaros@gmail.com>
@@ -59243,11 +59239,7 @@ exports.getRoot = function getRoot (file) {
   }
 }
 
-<<<<<<< HEAD
 }).call(this,require('_process'),"/node_modules\\snapkite-stream-client\\node_modules\\socket.io-client\\node_modules\\engine.io-client\\node_modules\\ws\\node_modules\\utf-8-validate\\node_modules\\bindings\\bindings.js")
-=======
-}).call(this,require('_process'),"/node_modules/snapkite-stream-client/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/node_modules/utf-8-validate/node_modules/bindings/bindings.js")
->>>>>>> b53dd276d2365538dd2f046351723d1c49fb1faf
 },{"_process":219,"fs":1,"path":218}],467:[function(require,module,exports){
 'use strict';
 
@@ -61576,61 +61568,67 @@ module.exports = StreamTweet;
 var React = require('react');
 
 var tweetStyle = {
-  position: 'relative',
-  display: 'inline-block',
-  width: '300px',
-  height: '400px',
-  margin: '10px'
+    position: 'relative',
+    display: 'inline-block',
+    width: '300px',
+    height: '400px',
+    margin: '10px'
 };
 
 var imageStyle = {
-  maxHeight: '400px',
-  boxShadow: '0px 1px 1px 0px #aaa',
-  border: '1px solid #fff'
+    maxHeight: '400px',
+    boxShadow: '0px 1px 1px 0px #aaa',
+    border: '1px solid #fff'
 };
 
 var Tweet = React.createClass({
-  displayName: 'Tweet',
+    displayName: 'Tweet',
 
-  propTypes: {
+    propTypes: {
 
-    tweet: function (properties, propertyName, componentName) {
+        tweet: function (properties, propertyName, componentName) {
 
-      var tweet = properties[propertyName];
+            var tweet = properties[propertyName];
 
-      if (!tweet) {
-        return new Error('Tweet must be set.');
-      }
+            if (!tweet) {
+                return new Error('Tweet must be set.');
+            }
 
-      if (!tweet.media) {
-        return new Error('Tweet must have an image.');
-      }
+            if (!tweet.media) {
+                return new Error('Tweet must have an image.');
+            }
+        },
+
+        onImageClick: React.PropTypes.func
     },
 
-    onImageClick: React.PropTypes.func
-  },
+    handleImageClick: function () {
+        var tweet = this.props.tweet;
+        var onImageClick = this.props.onImageClick;
 
-  handleImageClick: function () {
-    var tweet = this.props.tweet;
-    var onImageClick = this.props.onImageClick;
+        if (onImageClick) {
+            onImageClick(tweet);
+        }
+    },
 
-    if (onImageClick) {
-      onImageClick(tweet);
+    render: function () {
+        var tweet = this.props.tweet;
+        var tweetMediaUrl = tweet.media[0].url;
+        var tweetText = tweet.text;
+
+        return React.createElement(
+            'div',
+            { style: tweetStyle },
+            React.createElement(
+                'span',
+                null,
+                tweetText
+            ),
+            '        ',
+            React.createElement('img', { src: tweetMediaUrl, onClick: this.handleImageClick, style: imageStyle }),
+            '      '
+        );
     }
-  },
-
-  render: function () {
-    var tweet = this.props.tweet;
-    var tweetMediaUrl = tweet.media[0].url;
-
-    return React.createElement(
-      'div',
-      { style: tweetStyle },
-      '        ',
-      React.createElement('img', { src: tweetMediaUrl, onClick: this.handleImageClick, style: imageStyle }),
-      '      '
-    );
-  }
 });
 
 module.exports = Tweet;

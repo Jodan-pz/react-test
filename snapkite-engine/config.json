@@ -7,8 +7,10 @@
         "trackKeywords": "tech, apple, ac milan",
         "excludeKeywords": "",
         "filters": [
-            
-            
+            "snapkite-filter-has-text",
+            "snapkite-filter-is-possibly-sensitive",
+            "snapkite-filter-is-retweet",
+            "snapkite-filter-has-mobile-photo"
         ]
     },
     "twitter": {
