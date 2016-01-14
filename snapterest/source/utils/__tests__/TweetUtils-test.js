@@ -14,6 +14,7 @@ describe('Tweet utilities module', function () {
       tweet2: {},
       tweet3: {}
     };
+
     var expectedListOfTweetIds = [ 'tweet1', 'tweet2', 'tweet3' ];
     var actualListOfTweetIds = TweetUtils.getListOfTweetIds(tweetsMock);
 
