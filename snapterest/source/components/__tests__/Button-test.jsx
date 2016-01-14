@@ -13,7 +13,7 @@ describe('Button Component', function buttonComponentTestSuit() {
 
         var button = TestUtils.renderIntoDocument(
             <Button handleClick={ handleClick } />
-    );
+        );
 
         var buttonInstance = TestUtils.findRenderedDOMComponentWithTag(button, 'button');
 
