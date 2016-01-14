@@ -19,7 +19,7 @@
         ],
         "moduleFileExtensions": [
             "js",
-            "jsx"
+            "jsx"            
         ],
         "modulePathIgnorePatterns": [
             "<rootDir>/node_modules/"
