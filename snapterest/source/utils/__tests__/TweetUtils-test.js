@@ -19,5 +19,6 @@ describe('Tweet utilities module', function () {
     var actualListOfTweetIds = TweetUtils.getListOfTweetIds(tweetsMock);
 
     expect(actualListOfTweetIds).toEqual(expectedListOfTweetIds);
+
   });
 }); 
