@@ -1,9 +1,10 @@
-jest.autoMockOff();
+jest.dontMock("../CollectionUtils");
+jest.dontMock("../TweetUtils");
+
+const CollectionUtils = require('../CollectionUtils');
 
 describe('Collection utilities module', function collectionTestSuit() {
-
-    var CollectionUtils = require('../CollectionUtils');
-
+    
     var collectionTweetsMock = {
         collectionTweet7: {},
         collectionTweet8: {},
