@@ -2,11 +2,11 @@
 // Tells Jest to do NOT mock requires...
 jest.dontMock('../TweetUtils');
 
-describe('Tweet utilities module', function () {
+describe('Tweet utilities module', function tweetTestSuit () {
     
     // Test Suit Impementation
     
-  it('returns an array of tweet ids', function () {
+  it('returns an array of tweet ids', function listTweetIds () {
 
     var TweetUtils = require('../TweetUtils');
     var tweetsMock = {

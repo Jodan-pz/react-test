@@ -1,6 +1,6 @@
 jest.autoMockOff();
 
-describe('Collection utilities module', function collectionTestSuit () {
+describe('Collection utilities module', function collectionTestSuit() {
 
     var CollectionUtils = require('../CollectionUtils');
 
