@@ -5,7 +5,7 @@ const ReactDOM = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
 const Header = require('../Header');
 
-describe('Header component', function () {
+describe('Header component', function headerComponentTestSuit() {
 
   it('renders provided header text', function () {
 
@@ -15,8 +15,6 @@ describe('Header component', function () {
 
     var actualHeaderText = ReactDOM.findDOMNode(header).textContent;
 
-console.log('TextContent:' + actualHeaderText);
-
     expect(actualHeaderText).toBe('Testing...');
 
     var defaultHeader = TestUtils.renderIntoDocument(
@@ -25,7 +23,11 @@ console.log('TextContent:' + actualHeaderText);
 
     var actualDefaultHeaderText = ReactDOM.findDOMNode(defaultHeader).textContent;
 
-    expect(actualDefaultHeaderText).toBe('Default header');
+    var defaultHeaderExpect = expect(actualDefaultHeaderText);
+
+    defaultHeaderExpect.toBeDefined();
+    defaultHeaderExpect.toBe('Default header');
+    defaultHeaderExpect.toContain('head');
 
   });
 });
