@@ -26,8 +26,8 @@ describe('Header component', function headerComponentTestSuit() {
     var defaultHeaderExpect = expect(actualDefaultHeaderText);
 
     defaultHeaderExpect.toBeDefined();
-    defaultHeaderExpect.toBe('Default header');
     defaultHeaderExpect.toContain('head');
+    defaultHeaderExpect.toBe('Default header');    
 
   });
 });
