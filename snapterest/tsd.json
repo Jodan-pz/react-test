@@ -9,13 +9,16 @@
       "commit": "6a6ad7068a177c0d7a8a20830626cb63277191c5"
     },
     "react/react.d.ts": {
-      "commit": "6a6ad7068a177c0d7a8a20830626cb63277191c5"
+      "commit": "d1f6bde13f2209be42e86c3686761e8bfcbb50a5"
     },
     "jest/jest.d.ts": {
       "commit": "1984ea435fe9e93a012d50db7773db58ae5d494b"
     },
     "node/node.d.ts": {
       "commit": "1984ea435fe9e93a012d50db7773db58ae5d494b"
+    },
+    "react/react-addons-test-utils.d.ts": {
+      "commit": "d1f6bde13f2209be42e86c3686761e8bfcbb50a5"
     }
   }
 }

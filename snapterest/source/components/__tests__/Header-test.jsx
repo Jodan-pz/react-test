@@ -3,7 +3,6 @@ jest.dontMock('../Header');
 const React = require('react');
 const ReactDOM = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
-
 const Header = require('../Header');
 
 describe('Header component', function () {
@@ -15,6 +14,8 @@ describe('Header component', function () {
     );
 
     var actualHeaderText = ReactDOM.findDOMNode(header).textContent;
+
+console.log('TextContent:' + actualHeaderText);
 
     expect(actualHeaderText).toBe('Testing...');
 
