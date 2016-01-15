@@ -49657,7 +49657,7 @@ exports.connect = lookup;
 exports.Manager = require('./manager');
 exports.Socket = require('./socket');
 
-},{"./manager":410,"./socket":412,"./url":413,"debug":417,"socket.io-parser":473}],410:[function(require,module,exports){
+},{"./manager":410,"./socket":412,"./url":413,"debug":417,"socket.io-parser":472}],410:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -50216,7 +50216,7 @@ Manager.prototype.onreconnect = function(){
   this.emitAll('reconnect', attempt);
 };
 
-},{"./on":411,"./socket":412,"backo2":414,"component-bind":415,"component-emitter":416,"debug":417,"engine.io-client":420,"indexof":470,"socket.io-parser":473}],411:[function(require,module,exports){
+},{"./on":411,"./socket":412,"backo2":414,"component-bind":415,"component-emitter":416,"debug":417,"engine.io-client":420,"indexof":469,"socket.io-parser":472}],411:[function(require,module,exports){
 
 /**
  * Module exports.
@@ -50656,7 +50656,7 @@ Socket.prototype.compress = function(compress){
   return this;
 };
 
-},{"./on":411,"component-bind":415,"component-emitter":416,"debug":417,"has-binary":468,"socket.io-parser":473,"to-array":478}],413:[function(require,module,exports){
+},{"./on":411,"component-bind":415,"component-emitter":416,"debug":417,"has-binary":467,"socket.io-parser":472,"to-array":477}],413:[function(require,module,exports){
 (function (global){
 
 /**
@@ -50736,7 +50736,7 @@ function url(uri, loc){
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"debug":417,"parseuri":471}],414:[function(require,module,exports){
+},{"debug":417,"parseuri":470}],414:[function(require,module,exports){
 
 /**
  * Expose `Backoff`.
@@ -52255,7 +52255,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./transport":423,"./transports":424,"component-emitter":430,"debug":417,"engine.io-parser":432,"indexof":470,"parsejson":442,"parseqs":443,"parseuri":471}],423:[function(require,module,exports){
+},{"./transport":423,"./transports":424,"component-emitter":430,"debug":417,"engine.io-parser":432,"indexof":469,"parsejson":442,"parseqs":443,"parseuri":470}],423:[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -53371,7 +53371,7 @@ Polling.prototype.uri = function(){
   return schema + '://' + (ipv6 ? '[' + this.hostname + ']' : this.hostname) + port + this.path + query;
 };
 
-},{"../transport":423,"component-inherit":431,"debug":417,"engine.io-parser":432,"parseqs":443,"xmlhttprequest-ssl":429,"yeast":467}],428:[function(require,module,exports){
+},{"../transport":423,"component-inherit":431,"debug":417,"engine.io-parser":432,"parseqs":443,"xmlhttprequest-ssl":429,"yeast":466}],428:[function(require,module,exports){
 (function (global){
 /**
  * Module dependencies.
@@ -53658,7 +53658,7 @@ WS.prototype.check = function(){
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../transport":423,"component-inherit":431,"debug":417,"engine.io-parser":432,"parseqs":443,"ws":444,"yeast":467}],429:[function(require,module,exports){
+},{"../transport":423,"component-inherit":431,"debug":417,"engine.io-parser":432,"parseqs":443,"ws":444,"yeast":466}],429:[function(require,module,exports){
 // browser shim for xmlhttprequest module
 var hasCORS = require('has-cors');
 
@@ -55298,7 +55298,7 @@ try {
   module.exports = require('./BufferUtil.fallback');
 }
 
-},{"./BufferUtil.fallback":446,"bufferutil":460}],448:[function(require,module,exports){
+},{"./BufferUtil.fallback":446,"bufferutil":461}],448:[function(require,module,exports){
 /*!
  * ws: a node.js websocket client
  * Copyright(c) 2011 Einar Otto Stangvik <einaros@gmail.com>
@@ -58590,74 +58590,6 @@ function abortConnection(socket, code, name) {
 
 }).call(this,require("buffer").Buffer)
 },{"./Extensions":449,"./PerMessageDeflate":450,"./WebSocket":457,"buffer":17,"crypto":21,"events":213,"http":238,"options":462,"tls":1,"url":244,"util":247}],459:[function(require,module,exports){
-'use strict';
-
-/*!
- * bufferutil: WebSocket buffer utils
- * Copyright(c) 2015 Einar Otto Stangvik <einaros@gmail.com>
- * MIT Licensed
- */
-
-module.exports.BufferUtil = {
-  merge: function(mergedBuffer, buffers) {
-    for (var i = 0, offset = 0, l = buffers.length; i < l; ++i) {
-      var buf = buffers[i];
-
-      buf.copy(mergedBuffer, offset);
-      offset += buf.length;
-    }
-  },
-
-  mask: function(source, mask, output, offset, length) {
-    var maskNum = mask.readUInt32LE(0, true)
-      , i = 0
-      , num;
-
-    for (; i < length - 3; i += 4) {
-      num = maskNum ^ source.readUInt32LE(i, true);
-
-      if (num < 0) num = 4294967296 + num;
-      output.writeUInt32LE(num, offset + i, true);
-    }
-
-    switch (length % 4) {
-      case 3: output[offset + i + 2] = source[i + 2] ^ mask[2];
-      case 2: output[offset + i + 1] = source[i + 1] ^ mask[1];
-      case 1: output[offset + i] = source[i] ^ mask[0];
-    }
-  },
-
-  unmask: function(data, mask) {
-    var maskNum = mask.readUInt32LE(0, true)
-      , length = data.length
-      , i = 0
-      , num;
-
-    for (; i < length - 3; i += 4) {
-      num = maskNum ^ data.readUInt32LE(i, true);
-
-      if (num < 0) num = 4294967296 + num;
-      data.writeUInt32LE(num, i, true);
-    }
-
-    switch (length % 4) {
-      case 3: data[i + 2] = data[i + 2] ^ mask[2];
-      case 2: data[i + 1] = data[i + 1] ^ mask[1];
-      case 1: data[i] = data[i] ^ mask[0];
-    }
-  }
-};
-
-},{}],460:[function(require,module,exports){
-'use strict';
-
-try {
-  module.exports = require('bindings')('bufferutil');
-} catch (e) {
-  module.exports = require('./fallback');
-}
-
-},{"./fallback":459,"bindings":461}],461:[function(require,module,exports){
 (function (process,__filename){
 
 /**
@@ -58826,8 +58758,76 @@ exports.getRoot = function getRoot (file) {
   }
 }
 
-}).call(this,require('_process'),"/node_modules\\snapkite-stream-client\\node_modules\\socket.io-client\\node_modules\\engine.io-client\\node_modules\\ws\\node_modules\\bufferutil\\node_modules\\bindings\\bindings.js")
-},{"_process":219,"fs":1,"path":218}],462:[function(require,module,exports){
+}).call(this,require('_process'),"/node_modules/snapkite-stream-client/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/node_modules/bindings/bindings.js")
+},{"_process":219,"fs":1,"path":218}],460:[function(require,module,exports){
+'use strict';
+
+/*!
+ * bufferutil: WebSocket buffer utils
+ * Copyright(c) 2015 Einar Otto Stangvik <einaros@gmail.com>
+ * MIT Licensed
+ */
+
+module.exports.BufferUtil = {
+  merge: function(mergedBuffer, buffers) {
+    for (var i = 0, offset = 0, l = buffers.length; i < l; ++i) {
+      var buf = buffers[i];
+
+      buf.copy(mergedBuffer, offset);
+      offset += buf.length;
+    }
+  },
+
+  mask: function(source, mask, output, offset, length) {
+    var maskNum = mask.readUInt32LE(0, true)
+      , i = 0
+      , num;
+
+    for (; i < length - 3; i += 4) {
+      num = maskNum ^ source.readUInt32LE(i, true);
+
+      if (num < 0) num = 4294967296 + num;
+      output.writeUInt32LE(num, offset + i, true);
+    }
+
+    switch (length % 4) {
+      case 3: output[offset + i + 2] = source[i + 2] ^ mask[2];
+      case 2: output[offset + i + 1] = source[i + 1] ^ mask[1];
+      case 1: output[offset + i] = source[i] ^ mask[0];
+    }
+  },
+
+  unmask: function(data, mask) {
+    var maskNum = mask.readUInt32LE(0, true)
+      , length = data.length
+      , i = 0
+      , num;
+
+    for (; i < length - 3; i += 4) {
+      num = maskNum ^ data.readUInt32LE(i, true);
+
+      if (num < 0) num = 4294967296 + num;
+      data.writeUInt32LE(num, i, true);
+    }
+
+    switch (length % 4) {
+      case 3: data[i + 2] = data[i + 2] ^ mask[2];
+      case 2: data[i + 1] = data[i + 1] ^ mask[1];
+      case 1: data[i] = data[i] ^ mask[0];
+    }
+  }
+};
+
+},{}],461:[function(require,module,exports){
+'use strict';
+
+try {
+  module.exports = require('bindings')('bufferutil');
+} catch (e) {
+  module.exports = require('./fallback');
+}
+
+},{"./fallback":460,"bindings":459}],462:[function(require,module,exports){
 /*!
  * Copyright(c) 2011 Einar Otto Stangvik <einaros@gmail.com>
  * MIT Licensed
@@ -59070,177 +59070,7 @@ try {
   module.exports = require('./fallback');
 }
 
-},{"./fallback":464,"bindings":466}],466:[function(require,module,exports){
-(function (process,__filename){
-
-/**
- * Module dependencies.
- */
-
-var fs = require('fs')
-  , path = require('path')
-  , join = path.join
-  , dirname = path.dirname
-  , exists = fs.existsSync || path.existsSync
-  , defaults = {
-        arrow: process.env.NODE_BINDINGS_ARROW || ' → '
-      , compiled: process.env.NODE_BINDINGS_COMPILED_DIR || 'compiled'
-      , platform: process.platform
-      , arch: process.arch
-      , version: process.versions.node
-      , bindings: 'bindings.node'
-      , try: [
-          // node-gyp's linked version in the "build" dir
-          [ 'module_root', 'build', 'bindings' ]
-          // node-waf and gyp_addon (a.k.a node-gyp)
-        , [ 'module_root', 'build', 'Debug', 'bindings' ]
-        , [ 'module_root', 'build', 'Release', 'bindings' ]
-          // Debug files, for development (legacy behavior, remove for node v0.9)
-        , [ 'module_root', 'out', 'Debug', 'bindings' ]
-        , [ 'module_root', 'Debug', 'bindings' ]
-          // Release files, but manually compiled (legacy behavior, remove for node v0.9)
-        , [ 'module_root', 'out', 'Release', 'bindings' ]
-        , [ 'module_root', 'Release', 'bindings' ]
-          // Legacy from node-waf, node <= 0.4.x
-        , [ 'module_root', 'build', 'default', 'bindings' ]
-          // Production "Release" buildtype binary (meh...)
-        , [ 'module_root', 'compiled', 'version', 'platform', 'arch', 'bindings' ]
-        ]
-    }
-
-/**
- * The main `bindings()` function loads the compiled bindings for a given module.
- * It uses V8's Error API to determine the parent filename that this function is
- * being invoked from, which is then used to find the root directory.
- */
-
-function bindings (opts) {
-
-  // Argument surgery
-  if (typeof opts == 'string') {
-    opts = { bindings: opts }
-  } else if (!opts) {
-    opts = {}
-  }
-  opts.__proto__ = defaults
-
-  // Get the module root
-  if (!opts.module_root) {
-    opts.module_root = exports.getRoot(exports.getFileName())
-  }
-
-  // Ensure the given bindings name ends with .node
-  if (path.extname(opts.bindings) != '.node') {
-    opts.bindings += '.node'
-  }
-
-  var tries = []
-    , i = 0
-    , l = opts.try.length
-    , n
-    , b
-    , err
-
-  for (; i<l; i++) {
-    n = join.apply(null, opts.try[i].map(function (p) {
-      return opts[p] || p
-    }))
-    tries.push(n)
-    try {
-      b = opts.path ? require.resolve(n) : require(n)
-      if (!opts.path) {
-        b.path = n
-      }
-      return b
-    } catch (e) {
-      if (!/not find/i.test(e.message)) {
-        throw e
-      }
-    }
-  }
-
-  err = new Error('Could not locate the bindings file. Tried:\n'
-    + tries.map(function (a) { return opts.arrow + a }).join('\n'))
-  err.tries = tries
-  throw err
-}
-module.exports = exports = bindings
-
-
-/**
- * Gets the filename of the JavaScript file that invokes this function.
- * Used to help find the root directory of a module.
- * Optionally accepts an filename argument to skip when searching for the invoking filename
- */
-
-exports.getFileName = function getFileName (calling_file) {
-  var origPST = Error.prepareStackTrace
-    , origSTL = Error.stackTraceLimit
-    , dummy = {}
-    , fileName
-
-  Error.stackTraceLimit = 10
-
-  Error.prepareStackTrace = function (e, st) {
-    for (var i=0, l=st.length; i<l; i++) {
-      fileName = st[i].getFileName()
-      if (fileName !== __filename) {
-        if (calling_file) {
-            if (fileName !== calling_file) {
-              return
-            }
-        } else {
-          return
-        }
-      }
-    }
-  }
-
-  // run the 'prepareStackTrace' function above
-  Error.captureStackTrace(dummy)
-  dummy.stack
-
-  // cleanup
-  Error.prepareStackTrace = origPST
-  Error.stackTraceLimit = origSTL
-
-  return fileName
-}
-
-/**
- * Gets the root directory of a module, given an arbitrary filename
- * somewhere in the module tree. The "root directory" is the directory
- * containing the `package.json` file.
- *
- *   In:  /home/nate/node-native-module/lib/index.js
- *   Out: /home/nate/node-native-module
- */
-
-exports.getRoot = function getRoot (file) {
-  var dir = dirname(file)
-    , prev
-  while (true) {
-    if (dir === '.') {
-      // Avoids an infinite loop in rare cases, like the REPL
-      dir = process.cwd()
-    }
-    if (exists(join(dir, 'package.json')) || exists(join(dir, 'node_modules'))) {
-      // Found the 'package.json' file or 'node_modules' dir; we're done
-      return dir
-    }
-    if (prev === dir) {
-      // Got to the top
-      throw new Error('Could not find module root given file: "' + file
-                    + '". Do you have a `package.json` file? ')
-    }
-    // Try the parent dir next
-    prev = dir
-    dir = join(dir, '..')
-  }
-}
-
-}).call(this,require('_process'),"/node_modules\\snapkite-stream-client\\node_modules\\socket.io-client\\node_modules\\engine.io-client\\node_modules\\ws\\node_modules\\utf-8-validate\\node_modules\\bindings\\bindings.js")
-},{"_process":219,"fs":1,"path":218}],467:[function(require,module,exports){
+},{"./fallback":464,"bindings":459}],466:[function(require,module,exports){
 'use strict';
 
 var alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'.split('')
@@ -59310,7 +59140,7 @@ yeast.encode = encode;
 yeast.decode = decode;
 module.exports = yeast;
 
-},{}],468:[function(require,module,exports){
+},{}],467:[function(require,module,exports){
 (function (global){
 
 /*
@@ -59373,11 +59203,11 @@ function hasBinary(data) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"isarray":469}],469:[function(require,module,exports){
+},{"isarray":468}],468:[function(require,module,exports){
 arguments[4][217][0].apply(exports,arguments)
-},{"dup":217}],470:[function(require,module,exports){
+},{"dup":217}],469:[function(require,module,exports){
 arguments[4][249][0].apply(exports,arguments)
-},{"dup":249}],471:[function(require,module,exports){
+},{"dup":249}],470:[function(require,module,exports){
 /**
  * Parses an URI
  *
@@ -59418,7 +59248,7 @@ module.exports = function parseuri(str) {
     return uri;
 };
 
-},{}],472:[function(require,module,exports){
+},{}],471:[function(require,module,exports){
 (function (global){
 /*global Blob,File*/
 
@@ -59563,7 +59393,7 @@ exports.removeBlobs = function(data, callback) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./is-buffer":474,"isarray":476}],473:[function(require,module,exports){
+},{"./is-buffer":473,"isarray":475}],472:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -59965,7 +59795,7 @@ function error(data){
   };
 }
 
-},{"./binary":472,"./is-buffer":474,"component-emitter":475,"debug":417,"isarray":476,"json3":477}],474:[function(require,module,exports){
+},{"./binary":471,"./is-buffer":473,"component-emitter":474,"debug":417,"isarray":475,"json3":476}],473:[function(require,module,exports){
 (function (global){
 
 module.exports = isBuf;
@@ -59982,11 +59812,11 @@ function isBuf(obj) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],475:[function(require,module,exports){
+},{}],474:[function(require,module,exports){
 arguments[4][430][0].apply(exports,arguments)
-},{"dup":430}],476:[function(require,module,exports){
+},{"dup":430}],475:[function(require,module,exports){
 arguments[4][217][0].apply(exports,arguments)
-},{"dup":217}],477:[function(require,module,exports){
+},{"dup":217}],476:[function(require,module,exports){
 (function (global){
 /*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */
 ;(function () {
@@ -60892,7 +60722,7 @@ arguments[4][217][0].apply(exports,arguments)
 }).call(this);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],478:[function(require,module,exports){
+},{}],477:[function(require,module,exports){
 module.exports = toArray
 
 function toArray(list, index) {
@@ -60907,7 +60737,7 @@ function toArray(list, index) {
     return array
 }
 
-},{}],479:[function(require,module,exports){
+},{}],478:[function(require,module,exports){
 var config = {
   hostname: 'localhost',
   port: 3000,
@@ -61013,7 +60843,7 @@ module.exports = {
   destroyStream: destroyStream
 };
 
-},{"socket.io-client":409}],480:[function(require,module,exports){
+},{"socket.io-client":409}],479:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 
@@ -61021,7 +60851,7 @@ var Application = require('./components/Application.jsx');
 
 ReactDOM.render(React.createElement(Application, null), document.getElementById('react-application'));
 
-},{"./components/Application.jsx":481,"react":408,"react-dom":251}],481:[function(require,module,exports){
+},{"./components/Application.jsx":480,"react":408,"react-dom":251}],480:[function(require,module,exports){
 // Importing dependency modules
 var React = require('react');
 
@@ -61101,7 +60931,7 @@ var Application = React.createClass({
 // Exporting a React component as a module
 module.exports = Application;
 
-},{"./Collection.jsx":483,"./Stream.jsx":488,"react":408}],482:[function(require,module,exports){
+},{"./Collection.jsx":482,"./Stream.jsx":487,"react":408}],481:[function(require,module,exports){
 var React = require('react');
 
 var buttonStyle = {
@@ -61125,7 +60955,7 @@ var Button = React.createClass({
 
 module.exports = Button;
 
-},{"react":408}],483:[function(require,module,exports){
+},{"react":408}],482:[function(require,module,exports){
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 
@@ -61186,7 +61016,7 @@ var Collection = React.createClass({
 
 module.exports = Collection;
 
-},{"./CollectionControls.jsx":484,"./Header.jsx":487,"./TweetList.jsx":491,"react":408,"react-dom/server":252}],484:[function(require,module,exports){
+},{"./CollectionControls.jsx":483,"./Header.jsx":486,"./TweetList.jsx":490,"react":408,"react-dom/server":252}],483:[function(require,module,exports){
 var React = require('react');
 
 var Header = require('./Header.jsx');
@@ -61272,7 +61102,7 @@ var CollectionControls = React.createClass({
 
 module.exports = CollectionControls;
 
-},{"./Button.jsx":482,"./CollectionExportForm.jsx":485,"./CollectionRenameForm.jsx":486,"./Header.jsx":487,"react":408}],485:[function(require,module,exports){
+},{"./Button.jsx":481,"./CollectionExportForm.jsx":484,"./CollectionRenameForm.jsx":485,"./Header.jsx":486,"react":408}],484:[function(require,module,exports){
 var React = require('react');
 
 var formStyle = {
@@ -61301,7 +61131,7 @@ var CollectionExportForm = React.createClass({
 
 module.exports = CollectionExportForm;
 
-},{"react":408}],486:[function(require,module,exports){
+},{"react":408}],485:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 
@@ -61381,7 +61211,7 @@ var CollectionRenameForm = React.createClass({
 
 module.exports = CollectionRenameForm;
 
-},{"./Button.jsx":482,"./Header.jsx":487,"react":408,"react-dom":251}],487:[function(require,module,exports){
+},{"./Button.jsx":481,"./Header.jsx":486,"react":408,"react-dom":251}],486:[function(require,module,exports){
 var React = require('react');
 
 var headerStyle = {
@@ -61411,7 +61241,7 @@ var Header = React.createClass({
 
 module.exports = Header;
 
-},{"react":408}],488:[function(require,module,exports){
+},{"react":408}],487:[function(require,module,exports){
 var React = require('react');
 var SnapkiteStreamClient = require('snapkite-stream-client');
 
@@ -61457,7 +61287,7 @@ var Stream = React.createClass({
 
 module.exports = Stream;
 
-},{"./Header.jsx":487,"./StreamTweet.jsx":489,"react":408,"snapkite-stream-client":479}],489:[function(require,module,exports){
+},{"./Header.jsx":486,"./StreamTweet.jsx":488,"react":408,"snapkite-stream-client":478}],488:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 
@@ -61564,7 +61394,7 @@ var StreamTweet = React.createClass({
 
 module.exports = StreamTweet;
 
-},{"./Header.jsx":487,"./Tweet.jsx":490,"react":408,"react-dom":251}],490:[function(require,module,exports){
+},{"./Header.jsx":486,"./Tweet.jsx":489,"react":408,"react-dom":251}],489:[function(require,module,exports){
 var React = require('react');
 
 var tweetStyle = {
@@ -61633,7 +61463,7 @@ var Tweet = React.createClass({
 
 module.exports = Tweet;
 
-},{"react":408}],491:[function(require,module,exports){
+},{"react":408}],490:[function(require,module,exports){
 var React = require('react');
 
 var Tweet = require('./Tweet.jsx');
@@ -61689,4 +61519,4 @@ var TweetList = React.createClass({
 
 module.exports = TweetList;
 
-},{"./Tweet.jsx":490,"react":408}]},{},[480]);
+},{"./Tweet.jsx":489,"react":408}]},{},[479]);
