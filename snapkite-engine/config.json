@@ -1,7 +1,7 @@
 {
     "application": {
         "pushTweets": true,
-        "storeTweets": false,
+        "storeTweets": true,
         "pushKeywords": false,
         "storeKeywords": false,
         "trackKeywords": "tech, apple, ac milan",
